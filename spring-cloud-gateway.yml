@@ -11,9 +11,3 @@ spring:
             - Path=/api/cities/**
           filters:
             - RewritePath=/api/(?<cities>.*), /$\{cities}
-        - id: cloud-native-spring-ui
-          uri: lb://cloud-native-spring-ui
-          predicates:
-            - Path=/ui/**
-          filters:
-            - RewritePath=/ui, /
