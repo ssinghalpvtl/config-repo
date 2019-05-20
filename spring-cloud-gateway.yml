@@ -10,10 +10,10 @@ spring:
           predicates:
             - Path=/api/cities/**
           filters:
-            - RewritePath=/cities/(?<path>.*), /$\{path}
+            - RewritePath=/api/(?<cities>.*), /$\{cities}
         - id: cloud-native-spring-ui
           uri: lb://cloud-native-spring-ui
           predicates:
             - Path=/ui/**
           filters:
-            - RewritePath=/(?<path>.*), /$\{path}
+            - RewritePath=/ui, /
