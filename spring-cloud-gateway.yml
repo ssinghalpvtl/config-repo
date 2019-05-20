@@ -8,12 +8,12 @@ spring:
         - id: cloud-native-spring
           uri: lb://cloud-native-spring
           predicates:
-            - Path=/cities/**
+            - Path=/api/cities/**
           filters:
-            - RewritePath=/cities/(?.*), /$\{path}
+            - RewritePath=/cities/(?<path>.*), /$\{path}
         - id: cloud-native-spring-ui
           uri: lb://cloud-native-spring-ui
           predicates:
             - Path=/ui/**
           filters:
-            - RewritePath=/(?.*), /$\{path}
+            - RewritePath=/(?<path>.*), /$\{path}
