@@ -1,13 +1,17 @@
 spring:
-  gateway:
-    routes:
-    - id: cns
-      uri: lb://cloud-native-spring
-      predicates:
-      - Path=/cities/**
-      filters:
-       - RewritePath=/cities/(?<segment>.*), /$\{segment}
-    - id: cns-ui
-      uri: lb://cloud-native-spring-ui
-      predicates:
-      - Path=/
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: cns
+        uri: lb://cloud-native-spring
+        predicates:
+          - Path=/cities/**
+        filters:
+          - RewritePath=/cities/(?<segment>.*), /$\{segment}
+        - id: cns-ui
+        uri: lb://cloud-native-spring-ui
+        predicates:
+          - Path=/
