@@ -5,13 +5,15 @@ spring:
         locator:
           enabled: true
       routes:
-        - id: cns
-        uri: lb://cloud-native-spring
-        predicates:
-          - Path=/cities/**
-        filters:
-          - RewritePath=/cities/(?<segment>.*), /$\{segment}
-        - id: cns-ui
-        uri: lb://cloud-native-spring-ui
-        predicates:
-          - Path=/
+        - id: cloud-native-spring
+          uri: lb://cloud-native-spring
+          predicates:
+            - Path=/cities/**
+          filters:
+            - RewritePath=/cities/(?.*), /$\{path}
+        - id: cloud-native-spring-ui
+          uri: lb://cloud-native-spring-ui
+          predicates:
+            - Path=/ui/**
+          filters:
+            - RewritePath=/(?.*), /$\{path}
