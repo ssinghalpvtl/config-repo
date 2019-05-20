@@ -5,7 +5,11 @@ spring:
       uri: lb://cloud-native-spring
       predicates:
       - Path=/api/**
+      filters:
+       - RewritePath=/api/(?<segment>.*), /$\{segment}
     - id: cns-ui
       uri: lb://cloud-native-spring-ui
       predicates:
       - Path=/ui/**
+      filters:
+      - RewritePath=/ui/(?<segment>.*), /$\{segment}
